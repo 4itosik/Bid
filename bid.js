@@ -1,4 +1,4 @@
-window.bid = function(callback , time , callEvery) {
+window.Bid = function(callback , time , callEvery) {
 
 	this.time = 200; //default time
 	this.bumpCount = 0; //bumps count in case we want to call cb every n bumps
@@ -18,7 +18,7 @@ window.bid = function(callback , time , callEvery) {
 	return this;
 };
 
-window.bid.prototype = {
+window.Bid.prototype = {
 	//bumps bid waiting to call callback for another ammount of time
 	bump : function(obj, time) {
 		var _this = this;
@@ -44,7 +44,7 @@ window.bid.prototype = {
 
 		return this;
 	},
-	//stops bid and call callback immediately
+	//stops bid and calls callback immediately
 	finish : function(obj) {
 		if ( typeof this.callback !== "function" ) return false;
 		this._stopTimeout();
