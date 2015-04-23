@@ -10,19 +10,18 @@ First let's create `Bid` object that will wait `500ms` (default is `200ms`) afte
     }, 500);
     
     
-Now let's attach event to keypress on some input and make it bump our bid:
+Now we need to bump somehow our bid. Let's add key press event that will be doing it.
 
     $("input").keyup(function(){
         keyBid.bump(); //after every keypress bump bid for another bid time (500ms in this case)
     });
     
-Now, while you'll be writing quickly - nothing will happen. But if you'll stop writing for 500ms, callback will be called.
+While you'll be writing quickly - nothing will happen. But if you'll stop writing for 500ms, callback will be called.
 
-Also, it's very common that you'll want to pass some informations to callback (for example value of input). You can pass parameters to bump function and they will be accessable as parameters in function you've passed when creating bid object. Also, first parameter is accessable as `this` inside callback function.
+Also, it's very common that you'll want to pass some informations to callback (for example value of input). You can pass parameters to bump function and they will be accessable as parameters in function you've passed when creating `Bid` object. Also, first parameter is accessable as `this` inside callback function.
 
     var keyBid = new Bid(function(value){
         alert("No key pressed for 500ms. Actual input value is: " + value);
-        //also, first parameter passed to this function is accessable as 'this'. So this == value would be true here
     }, 500);
     
     $("input").keyup(function(){
@@ -34,7 +33,8 @@ And thats it.
 Also - `Bid` object have some additional functions:
 
     var bidObject = new Bid(function(){});
+    
     bidObject.stop(); //will stop bid without calling callback (you can .bump it again later)
-    bidObject.finish(); //stops bid and calls callback immediately
+    bidObject.finish(); //stops bid and calls callback immediately (you can .bump it again later)
 
 
