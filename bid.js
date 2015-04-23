@@ -41,7 +41,7 @@ window.Bid.prototype = {
 	},
 	//stops bid without calling callback
 	stop : function() {
-		clearTimeout( this.timeout );
+		this._stopTimeout();
 
 		return this;
 	},
