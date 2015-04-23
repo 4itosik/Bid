@@ -1,5 +1,5 @@
 # Bid JavaScript plugin
-Let's say you've got input with dynamic search and you don't want it to send request to server after every key press (especially when user is writing very fast). You want to send request when user stopped writing and didn't press another key for some short time like 200ms.
+Let's say you've got input with dynamic search and you don't want it to send request to server after every key press (especially when user is writing very fast). You want to send request when user stopped writing and didn't press another key for some short time like 200ms. That's sort of situation this plugin was made for.
 
 ##Example of useage
 
