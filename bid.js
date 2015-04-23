@@ -20,8 +20,9 @@ window.Bid = function(callback , time , callEvery) {
 
 window.Bid.prototype = {
 	//bumps bid waiting to call callback for another ammount of time
-	bump : function(obj, time) {
+	bump : function() {
 		var _this = this;
+		var args = arguments;
 
 		this.bumpCount++; //increment bump count
 
@@ -33,22 +34,22 @@ window.Bid.prototype = {
 		this._stopTimeout();
 
 		this.timeout = setTimeout(function(){
-			_this.finish(obj);
-		}, time || this.time);
+			_this.finish.apply( _this , args );
+		}, this.time);
 
 		return this;
 	},
 	//stops bid without calling callback
-	stop : function(obj) {
+	stop : function() {
 		clearTimeout( this.timeout );
 
 		return this;
 	},
 	//stops bid and calls callback immediately
-	finish : function(obj) {
+	finish : function() {
 		if ( typeof this.callback !== "function" ) return false;
 		this._stopTimeout();
-		this.callback.call( obj , obj ); //call callback with obj as parameter and as 'this' inside function
+		this.callback.apply( typeof arguments[0] !== "undefined" ? arguments[0] : this , arguments ); //call callback with passed parameters and as 'this' as first parameter if exists
 		return this;
 	},
 	_stopTimeout : function(){
